@@ -1,0 +1,70 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms"
+             mc:Ignorable="d"
+             Title="Feed RSS Medium"
+             prism:ViewModelLocator.AutowireViewModel="True"
+             x:Class="PrismPolly.MainPage">
+
+     <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+           <StackLayout>
+            <Button Text="Carregar Feed" Command="{Binding RefreshNewsFeedCommand}"/>
+        </StackLayout>
+
+       <ListView Grid.Row="1"
+            x:Name="NewsFeedList"
+            HasUnevenRows="True"
+            ItemsSource="{Binding RSSFeed}">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <Grid Margin="10">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+                                
+                          <Image  Source="{Binding Thumbnail}"
+                                WidthRequest="80" >
+                        </Image>      
+                                   
+                            <StackLayout Grid.Column="1" Padding="5">
+                                <Label
+                                    FontAttributes="Bold"
+                                    FontSize="Medium"
+                                    Text="{Binding Title}" />
+                                <Label LineBreakMode="TailTruncation" Text="{Binding Description}" />
+                                <Label
+                                    LineBreakMode="TailTruncation"
+                                    Text="{Binding Author}"
+                                    TextColor="IndianRed" />
+                            </StackLayout>
+                        </Grid>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+        
+        <StackLayout Grid.Row="1"
+                     HorizontalOptions="Center"
+                     VerticalOptions="Start"
+                     IsVisible="{Binding IsBusy}">
+            <ActivityIndicator IsRunning="{Binding IsBusy}" HorizontalOptions="Center" VerticalOptions="Start"/>
+            <Label Text="{Binding LoadingText}" VerticalTextAlignment="Center"/>
+
+            <StackLayout.Orientation>
+                <OnPlatform x:TypeArguments="StackOrientation"
+                            iOS="Horizontal"
+                            Android="Vertical"/>
+            </StackLayout.Orientation>
+        </StackLayout> 
+    </Grid>
+</ContentPage>
