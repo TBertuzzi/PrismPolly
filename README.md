@@ -15,3 +15,5 @@ Aplicativo utilizado para Demonstrar o Polly com Prism e Eventagreggator
 * BackGroundServices : https://medium.com/@bertuzzi/meu-plugin-minha-vida-background-services-16493f32f83e
 
 * MonkeyCache : https://medium.com/@bertuzzi/o-x-do-xamarin-forms-armazenando-cache-com-monkey-cache-p-b881deeba8cd
+
+* Notificação ao alterar conexão : https://medium.com/@bertuzzi/xamarin-rocket-5-notifica%C3%A7%C3%A3o-ao-alterar-a-conex%C3%A3o-5495c5f57a4d
